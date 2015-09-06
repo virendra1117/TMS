@@ -21,6 +21,5 @@ public class CreateTicketModel
         public Nullable<System.DateTime> DeletedDate { get; set; }
         public Nullable<System.DateTime> IsActive { get; set; }
         public CategoryModel _categoryModel { get; set; }
-        public CustomerDetails _customerDetails { get; set; }
     }
 }

@@ -18,14 +18,13 @@ namespace TMS.Data.Repository
             tblTicket _objtblTicket = (createTicketModel.ticketid == 0) ? new tblTicket() : db.tblTickets.Where(x => x.ticketid == createTicketModel.ticketid).FirstOrDefault();
             if (loggedinId != null)
             {
-                _objtblTicket.ticketid = createTicketModel.ticketid;
+                _objtblTicket.CustomerId = loggedinId;
             }
             else
             {
-                _objtblTicket.ticketid = 0;
+                _objtblTicket.CustomerId = 0;
             }
             _objtblTicket.Categoryid = createTicketModel._categoryModel.CategoryId;
-            _objtblTicket.CustomerId = 0;
             _objtblTicket.Prority = createTicketModel.Prority;
             _objtblTicket.Subject = createTicketModel.Subject;
             _objtblTicket.Message = createTicketModel.Message;
