@@ -44,11 +44,11 @@ namespace ticketmanagmentsystem.Controllers
                 {
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
                               1,
-                              result.LoginId.ToString(CultureInfo.CurrentCulture),                          //user Name
+                              result.userId.ToString(CultureInfo.CurrentCulture),                          //user Name
                               DateTime.Now,
                               DateTime.Now.AddMinutes(30),                          // expiry in 30 min
                               objLoginModel.RememberMe,
-                             objLoginModel.UserRole.ToString(CultureInfo.CurrentCulture) + "_" + result.LoginId.ToString());
+                             objLoginModel.UserRole.ToString(CultureInfo.CurrentCulture) + "_" + result.userId.ToString());
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
                                                        FormsAuthentication.Encrypt(authTicket));
                     Response.Cookies.Add(cookie);

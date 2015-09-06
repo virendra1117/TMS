@@ -12,15 +12,17 @@ namespace TMS.Data.EntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCustomerInfo
+    public partial class tblUser
     {
-        public int CustomerId { get; set; }
-        public int LoginId { get; set; }
+        public int userId { get; set; }
+        public string userName { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> RoleId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailId { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
-        public bool IsActive { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }

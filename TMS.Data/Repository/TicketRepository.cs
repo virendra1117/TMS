@@ -48,10 +48,10 @@ namespace TMS.Data.Repository
         {
             List<CreateTicketModel> getTicketList = new List<CreateTicketModel>();
             var getTickets = (from t in db.tblTickets
-                                  join c in db.tblCustomerInfoes on t.CustomerId equals c.CustomerId
+                                  join user in db.tblUsers on t.Categoryid equals user.userId
                                   join cat in db.tblCategories on t.Categoryid equals cat.CategoryId
                                   where t.CustomerId == userId
-                                  select new { c.FirstName,t.Message, cat.CatgoryName, t.Prority }).ToList();
+                                  select new { user.FirstName,t.Message, cat.CatgoryName, t.Prority }).ToList();
             foreach (var tList in getTickets)
             {
 

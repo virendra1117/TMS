@@ -10,7 +10,7 @@ namespace TMS.Business.Interface
 {
     public interface IAccountManager
     {
-        tblLogin AuthenticateUser(LoginModel objLoginModel);
+        tblUser AuthenticateUser(LoginModel objLoginModel);
         bool CustomerRegistration(LoginModel objmodel);
     }
 }

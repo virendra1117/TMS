@@ -13,7 +13,7 @@ namespace TMS.Business.Logic
     public class AccountManager : IAccountManager
     {
         AccountRepository objAccountRepository = new AccountRepository();
-        public tblLogin AuthenticateUser(LoginModel objLoginModel)
+        public tblUser AuthenticateUser(LoginModel objLoginModel)
         {
             return objAccountRepository.AuthenticateUser(objLoginModel);
         }

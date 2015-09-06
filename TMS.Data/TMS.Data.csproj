@@ -53,13 +53,10 @@
     <Compile Include="EntityModel\tblCategory.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\tblCustomerInfo.cs">
-      <DependentUpon>TMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityModel\tblLogin.cs">
-      <DependentUpon>TMS.tt</DependentUpon>
-    </Compile>
     <Compile Include="EntityModel\tblTicket.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\tblUser.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TMS.Context.cs">

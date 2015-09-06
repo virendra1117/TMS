@@ -25,9 +25,8 @@ namespace TMS.Data.EntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblCustomerInfo> tblCustomerInfoes { get; set; }
-        public virtual DbSet<tblLogin> tblLogins { get; set; }
-        public virtual DbSet<tblTicket> tblTickets { get; set; }
         public virtual DbSet<tblCategory> tblCategories { get; set; }
+        public virtual DbSet<tblTicket> tblTickets { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
     }
 }

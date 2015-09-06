@@ -15,31 +15,6 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <EntityType Name="tblCustomerInfo">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginId" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="DeletedDate" Type="datetime" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblLogin">
-          <Key>
-            <PropertyRef Name="LoginId" />
-          </Key>
-          <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="RoleId" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="DeletedDate" Type="datetime" />
-          <Property Name="IsActive" Type="bit" />
-        </EntityType>
         <EntityType Name="tblTicket">
           <Key>
             <PropertyRef Name="ticketid" />
@@ -59,43 +34,41 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityContainer Name="ticketmanagmentModelStoreContainer">
           <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblCustomerInfo" EntityType="Self.tblCustomerInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTicket" EntityType="Self.tblTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ticketmanagmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ticketmanagmentEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblCustomerInfoes" EntityType="ticketmanagmentModel.tblCustomerInfo" />
-          <EntitySet Name="tblLogins" EntityType="ticketmanagmentModel.tblLogin" />
-          <EntitySet Name="tblTickets" EntityType="ticketmanagmentModel.tblTicket" />
           <EntitySet Name="tblCategories" EntityType="ticketmanagmentModel.tblCategory" />
+          <EntitySet Name="tblTickets" EntityType="ticketmanagmentModel.tblTicket" />
+          <EntitySet Name="tblUsers" EntityType="ticketmanagmentModel.tblUser" />
         </EntityContainer>
-        <EntityType Name="tblCustomerInfo">
+        <EntityType Name="tblCategory">
           <Key>
-            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="CategoryId" />
           </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginId" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblLogin">
-          <Key>
-            <PropertyRef Name="LoginId" />
-          </Key>
-          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatgoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
@@ -119,12 +92,17 @@
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
-        <EntityType Name="tblCategory">
+        <EntityType Name="tblUser">
           <Key>
-            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="userId" />
           </Key>
-          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatgoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
@@ -135,30 +113,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ticketmanagmentModelStoreContainer" CdmEntityContainer="ticketmanagmentEntities">
-          <EntitySetMapping Name="tblCustomerInfoes">
-            <EntityTypeMapping TypeName="ticketmanagmentModel.tblCustomerInfo">
-              <MappingFragment StoreEntitySet="tblCustomerInfo">
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="ticketmanagmentModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblLogins">
-            <EntityTypeMapping TypeName="ticketmanagmentModel.tblLogin">
-              <MappingFragment StoreEntitySet="tblLogin">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="CatgoryName" ColumnName="CatgoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -182,14 +144,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblCategories">
-            <EntityTypeMapping TypeName="ticketmanagmentModel.tblCategory">
-              <MappingFragment StoreEntitySet="tblCategory">
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="ticketmanagmentModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CatgoryName" ColumnName="CatgoryName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

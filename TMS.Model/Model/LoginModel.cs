@@ -9,6 +9,7 @@ namespace TMS.Model
 {
     public class LoginModel
     {
+        public int LoginId { get; set; }
         [Required(ErrorMessage = "UserName is required")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Password is required")]
@@ -16,6 +17,8 @@ namespace TMS.Model
         public bool RememberMe { get; set; }
         [Required]
         public int UserRole { get; set; }
-        public CustomerDetails _objcustdetails { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailId { get; set; }
     }
 }

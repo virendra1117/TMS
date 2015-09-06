@@ -12,13 +12,13 @@ namespace TMS.Data.Repository
     public class AccountRepository
     {
         ticketmanagmentEntities dbobj = new ticketmanagmentEntities();
-        public tblLogin AuthenticateUser(LoginModel objLoginModel)
+        public tblUser AuthenticateUser(LoginModel objLoginModel)
         {
-            tblLogin objLogin = null;
+            tblUser objLogin = null;
             using (ticketmanagmentEntities dbobj = new ticketmanagmentEntities())
             {
-               objLogin= dbobj.tblLogins.Where(x =>
-                    x.UserName == objLoginModel.UserName &&
+               objLogin= dbobj.tblUsers.Where(x =>
+                    x.userName == objLoginModel.UserName &&
                     x.Password == objLoginModel.Password &&
                     x.RoleId == objLoginModel.UserRole && x.IsActive == true
                     ).FirstOrDefault();
@@ -26,36 +26,33 @@ namespace TMS.Data.Repository
             return objLogin;
 
         }
-        public static tblCustomerInfo CurrentUser()
+        public static tblUser CurrentUser()
         {
-            tblCustomerInfo userInfo = null;
+            tblUser userInfo = null;
             using (ticketmanagmentEntities db = new ticketmanagmentEntities())
             {
                 var userid = Convert.ToInt32(HttpContext.Current.User.Identity.Name);
-                userInfo = db.tblCustomerInfoes.Where(x =>
-                    x.CustomerId == userid
+                userInfo = db.tblUsers.Where(x =>
+                    x.userId == userid
                    ).FirstOrDefault();
             }
             return userInfo;
         }
-        public bool CustomerRegistration(LoginModel objmodel)
+        public bool CustomerRegistration(LoginModel objLoginModel)
         {
-            tblCustomerInfo custtblobj = new tblCustomerInfo();
-            tblLogin objlogin = new tblLogin();
-            objlogin.UserName = objmodel._objcustdetails.EmailId;
-            objlogin.Password = objmodel.Password;
-            objlogin.CreatedDate = DateTime.Now;
-            objlogin.IsActive = true;
-            dbobj.tblLogins.Add(objlogin);
-            dbobj.SaveChanges();
 
-            custtblobj.FirstName = objmodel._objcustdetails.FirstName;
-            custtblobj.LastName = objmodel._objcustdetails.LastName;
-            custtblobj.EmailId = objmodel._objcustdetails.EmailId;
-            custtblobj.CustomerId = objlogin.LoginId;
-            custtblobj.IsActive = true;
-            custtblobj.CreatedDate = DateTime.Now;
-            dbobj.tblCustomerInfoes.Add(custtblobj);
+            tblUser objUser = (objLoginModel.LoginId == 0) ? new tblUser() : dbobj.tblUsers.Where(x => x.userId == objLoginModel.LoginId).FirstOrDefault();
+            objUser.userName = objLoginModel.UserName;
+            objUser.Password = objLoginModel.Password;
+            objUser.CreatedDate = DateTime.Now;
+            objUser.FirstName = objLoginModel.FirstName;
+            objUser.LastName = objLoginModel.LastName;
+            objUser.IsActive = true;
+            objUser.RoleId = 3;
+            if (objLoginModel.LoginId == 0)
+            {
+                dbobj.tblUsers.Add(objUser);
+            }
             dbobj.SaveChanges();
             return true;
         }
