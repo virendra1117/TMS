@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CurrentRole = TMS.Helper.AuthenticationHelper.CurrentRole();
+}
+
+<div id="divContent">
+    @switch (CurrentRole)
+    {
+        case 1:
+            <div class="row">
+                @Html.Partial("_AdminDashBoard")
+            </div>
+            <hr>
+            break;
+        case 2:
+        <div class="row">
+            @Html.Partial("_EmployeeDashBoard")
+        </div>
+        <hr>
+            break;
+        case 3:
+        <div class="row">
+            @Html.Partial("_UserDashBoard")
+        </div>
+        <hr>
+            break;
+
+    }
+</div>
+

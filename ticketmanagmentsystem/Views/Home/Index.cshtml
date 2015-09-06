@@ -1,0 +1,75 @@
+﻿@model TMS.Model.LoginModel
+@*@Html.ValidationSummary(true)*@
+<div class="row">
+    <div class="col-lg-14">
+       
+        <div>
+            <p>Login to track your existing support requests. 
+            If you have not created a ticket yet then you would need to <a href="#">register</a>  or @Html.ActionLink("Create" ,"CreateTicket","Ticket") a new ticket to begin</p>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                User Details
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                   
+                    <div class="col-lg-6">
+                        <form role="form" method="post" action="~/Account/customerRegistration">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                @Html.TextBoxFor(x => x._objcustdetails.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x._objcustdetails.FirstName, null, new { Style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                @Html.TextBoxFor(x => x._objcustdetails.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x._objcustdetails.LastName, null, new { Style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label>EmailId/UserName</label>
+                                @Html.TextBoxFor(x => x._objcustdetails.EmailId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x._objcustdetails.EmailId, null, new { Style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Password, null, new { Style = "color:red" })
+                            </div>
+                            <button class="btn btn-default" type="submit">Submit</button>
+                           
+                        </form>
+
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <div class="col-lg-6">
+                        <form role="form" method="post" action="~/Account/Login">
+                            <div class="form-group">
+                                <label>EmailId/UserName</label>
+                                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.UserName, null, new { Style = "color:red" })
+
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Password, null, new { Style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label>User Type</label>
+                                @Html.DropDownListFor(x => x.UserRole, new SelectList(TMS.Helper.EnumHelper.GetEnumList<TMS.Helper.EnumHelper.UserRoles>(), "Value", "Name"), new { @class = "form-control" })
+                            </div>
+                            <button class="btn btn-default" type="submit">Login</button>
+                           
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "EmployeLogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">New Ticket</a></li>
+                            @*<li><a href="#tab3default" data-toggle="tab">Default 3</a></li>*@
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">My Settings <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+                                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1default">
+                                @Ajax.ActionLink("All", "GetListByUser", "Ticket", null, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divContent" })
+                                <a href="#">Open</a> <a href="#">On Hold</a><a href="#">Solve</a>  <a href="#">Closed</a>
+                                <div id="divContent">
+                                </div>
+                                <div class="tab-pane fade" id="tab2default">
+                                    @Html.Partial("~/Views/Ticket/_CreateTicketByUser.cshtml");
+                                </div>
+                                @*<div class="tab-pane fade" id="tab3default">Default 3</div>
+                                    <div class="tab-pane fade" id="tab4default">Default 4</div>
+                                    <div class="tab-pane fade" id="tab5default">Default 5</div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
